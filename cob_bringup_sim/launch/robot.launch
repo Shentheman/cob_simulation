@@ -2,10 +2,12 @@
 <launch>
 
   <!-- define arguments -->
-  <!--<arg name="robot" default="$(optenv ROBOT !!NO_ROBOT_SET!!)"/>-->
-  <arg name="robot" default="raw3-6"/>
-  <!--<arg name="robot_env" default="$(optenv ROBOT_ENV !!NO_ROBOT_ENV_SET!!)"/>-->
-  <arg name="robot_env" default="empty"/>
+  <arg name="robot" default="$(optenv ROBOT !!NO_ROBOT_SET!!)"/>
+  <arg name="robot_env" default="$(optenv ROBOT_ENV !!NO_ROBOT_ENV_SET!!)"/>
+  <arg name="teleop" default="$(optenv TELEOP !!NO_TELEOP_SET!!)"/>
+  <arg name="python_urx" default="$(optenv PYTHONURX !!NO_PYTHON_URX_SET!!)"/>
+  <arg name="env-script" default="$(optenv ENV_SCRIPT !!NO_ENV_SCRIPT_SET!!)"/>
+  <arg name="pc1" default="$(optenv PC1 !!NO_PC1_SET!!)"/>
 
   <arg name="pkg_robot_config" default="$(find cob_default_robot_config)"/>
   <arg name="pkg_env_config" default="$(find cob_default_env_config)"/>
@@ -19,7 +21,7 @@
 
   <!-- startup simulated world -->
   <include file="$(find cob_gazebo_worlds)/launch/world.launch">
-    <arg name="robot_env" value="$(arg robot_env)" />
+    <arg name="robot_env" value="$(arg robot_env)"/>
     <arg name="pkg_env_config" value="$(arg pkg_env_config)" />
     <arg name="pkg_gazebo_worlds" value="$(arg pkg_gazebo_worlds)" />
     <arg name="world_name" value="$(arg world_name)"/>
@@ -35,6 +37,10 @@
     <arg name="pkg_robot_config" value="$(arg pkg_robot_config)" />
     <arg name="paused" value="$(arg paused)" />
     <arg name="initial_config" value="$(arg initial_config)"/>
+    <arg name="teleop" value="$(arg teleop)"/>
+    <arg name="python_urx" value="$(arg python_urx)"/>
+    <arg name="env-script" value="$(find cob_bringup)/env.sh"/>
+    <arg name="pc1" value="$(arg pc1)"/> 
   </include>
 
 </launch>
