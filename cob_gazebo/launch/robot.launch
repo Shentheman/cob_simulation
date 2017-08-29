@@ -3,22 +3,31 @@
 
 	<!-- define arguments -->
 	<arg name="robot" default="$(optenv ROBOT !!NO_ROBOT_SET!!)"/>
+	<arg name="sim" default="$(optenv SIM !!NO_SIM_SET!!)"/>
+	<arg name="teleop" default="$(optenv TELEOP !!NO_TELEOP_SET!!)"/>
+	<arg name="python_urx" default="$(optenv PYTHONURX !!NO_PYTHON_URX_SET!!)"/>
+	<arg name="ur_ip" default="$(optenv UR_IP !!NO_UR_IP_SET!!)"/>
+	<arg name="gripper_ip" default="$(optenv GRIPPER_IP !!NO_GRIPPER_IP_SET!!)"/>
+	<arg name="env-script" default="$(find cob_bringup)/env.sh"/>
+	<!--<arg name="pc1" default="raw3-6-pc1"/> -->
+	<arg name="pc1" default="localhost"/>
+
+
 	<arg name="robot_env" default="$(optenv ROBOT_ENV !!NO_ROBOT_ENV_SET!!)"/>
 	<arg name="pkg_robot_config" default="$(find cob_default_robot_config)"/>
 	<arg name="paused" default="false"/>
 	<arg name="initial_config" default=""/>
-	<!--<arg name="pc1" default="raw3-6-pc1"/> -->
-	<arg name="pc1" default="localhost"/> 
-	<arg name="python_urx" default="false"/>
 
 	<!-- upload default configuration parameters -->
 	<include file="$(find cob_bringup)/robots/$(arg robot).xml" >
-		<arg name="sim" value="true" />
 		<arg name="robot" value="$(arg robot)" />
+		<arg name="sim" value="$(arg sim)" />
+      	<arg name="teleop" value="$(arg teleop)"/>
 		<arg name="python_urx" value="$(arg python_urx)"/>
+	    <arg name="ur_ip" value="$(arg ur_ip)"/>
+	    <arg name="gripper_ip" value="$(arg gripper_ip)"/>
 	    <arg name="pc1" value="$(arg pc1)"/>
-      	<arg name="env-script" value="$(find cob_bringup)/env.sh"/>
-      	<arg name="teleop" value="false"/>
+      	<arg name="env-script" value="$(arg env-script)"/>
 	</include>
 
 	<!-- push robot_description to factory and spawn robot in gazebo -->
