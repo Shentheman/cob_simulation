@@ -4,7 +4,7 @@
 	<!-- define arguments -->
 	<arg name="robot_env" default="$(optenv ROBOT_ENV !!NO_ROBOT_ENV_SET!!)"/>
 	<!-- <arg name="pkg_env_config" default="$(optenv PKG_ENV_CONFIG !!NO_PKG_ENV_CONFIG_SET!!)"/> -->
-	<arg name="pkg_gazebo_worlds" default="$(optenv PKG_GAZEBO_WORLDS !!NO_PKG_GAZEBO_WORLDS_SET!!)"/>
+	<arg name="pkg_data" default="$(optenv PKG_DATA !!NO_PKG_DATA_SET!!)"/>
 	<arg name="world_name" default="worlds/empty.world"/>
 	
 	<arg name="debug" default="false" />
@@ -14,7 +14,7 @@
 	<arg name="gui" default="true"/>
 
 	<!-- <env name="GAZEBO_MODEL_PATH" value="$(arg pkg_gazebo_worlds)/Media/models:$(optenv GAZEBO_MODEL_PATH)"/> -->
-	<env name="GAZEBO_MODEL_PATH" value="$(arg pkg_gazebo_worlds)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+	<env name="GAZEBO_MODEL_PATH" value="$(arg pkg_data)/objects:$(optenv GAZEBO_MODEL_PATH)"/>
 
 	<!-- upload default configuration parameters -->
 	<!-- <include file="$(arg pkg_env_config)/upload_navigation_goals.launch">
@@ -35,8 +35,8 @@
 	</include>
 
 	<!-- spawn environment and start environment-specific nodes -->
-	<include file="$(arg pkg_gazebo_worlds)/environments/$(arg robot_env)/$(arg robot_env).xml">
-		<arg name="pkg_gazebo_worlds" value="$(arg pkg_gazebo_worlds)" />
+	<include file="$(arg pkg_data)/environments/$(arg robot_env)/$(arg robot_env).xml">
+		<arg name="pkg_data" value="$(arg pkg_data)" />
 	</include>
 
 </launch>
